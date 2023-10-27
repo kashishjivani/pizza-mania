@@ -12,7 +12,7 @@ const Filter = ({ isVeg, toggleIsVeg, sortBy, toggleSort }) => {
   };
 
   return (
-    <div className="bg-indigo-100 mt-4 flex flex-row justify-between p-4">
+    <div className="bg-indigo-100 mt-3 flex flex-row justify-between p-4">
       <div className="flex flex-row space-x-4">
         <div className="relative">
           {/* Select input for sorting */}

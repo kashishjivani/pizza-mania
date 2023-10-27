@@ -3,7 +3,7 @@ import PizzaCard from "./PizzaCard";
 
 const Cart = ({ cartItems, addPizzaToCart, removeFromCart }) => {
   return (
-    <div className="p-5 h-96 mb-10">
+    <div className="p-5 min-h-screen mb-10">
       {cartItems.length > 0 ? (
         cartItems?.map((pizza) =>
           pizza.quantity > 0 ? (
