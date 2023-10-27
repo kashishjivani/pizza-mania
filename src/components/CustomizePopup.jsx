@@ -4,11 +4,11 @@ const CustomizePopup = ({ pizza, addPizzaToCart, onClose }) => {
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedToppings, setSelectedToppings] = useState([]);
 
-  const handleSizeChange = (event) => {
+  const handleSizeChange = (event) => {  // Handling change in size
     setSelectedSize(event.target.value);
   };
 
-  const handleToppingChange = (event) => {
+  const handleToppingChange = (event) => {  // Handling change in toppings
     const topping = event.target.value;
     const idx = selectedToppings.indexOf(topping);
     if (idx === -1) {
@@ -19,22 +19,22 @@ const CustomizePopup = ({ pizza, addPizzaToCart, onClose }) => {
     }
   };
   
-  const handleSubmit = (event) => {
+  const handleSubmit = (event) => {  // Adding selected size and toppings to the pizza
     event.preventDefault();
     const customizedPizza = {
       ...pizza,
       selectedSize: selectedSize,
       selectedToppings: selectedToppings,
     };
-    addPizzaToCart(pizza.id, customizedPizza);
-    console.log("Customized Pizza:", customizedPizza);
-    onClose();
+    addPizzaToCart(pizza.id, customizedPizza);  // Adding customized pizza to the cart items
+    onClose();  // Closing the pop-up
   };
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-600 bg-opacity-50">
       <div className="bg-white rounded-lg p-6 shadow-lg">
         <div className="flex justify-between items-center mb-6 space-x-4">
           <h3 className="text-xl font-bold">{`Customize "${pizza.name}"`}</h3>
+          {/* Close button */}
           <button
             className="text-gray-600 hover:text-gray-800"
             onClick={onClose}
@@ -43,6 +43,7 @@ const CustomizePopup = ({ pizza, addPizzaToCart, onClose }) => {
           </button>
         </div>
         <div>
+          {/* Form for accepting size and toppings */}
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label className="font-bold mb-2 block">
@@ -94,6 +95,7 @@ const CustomizePopup = ({ pizza, addPizzaToCart, onClose }) => {
                 ))}
               </div>
             </div>
+            {/* Button for adding item to the cart */}
             <div className="text-center">
               <button
                 type="submit"

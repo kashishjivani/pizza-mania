@@ -2,6 +2,7 @@ import React from 'react';
 
 function Footer() {
   return (
+    // A basic footer containg copyright information and support email
     <footer className="bg-gray-800 text-white p-4 text-center">
       <div className="max-w-4xl mx-auto">
         <p className="font-bold">© 2023 Pizza Mania</p>

@@ -5,7 +5,7 @@ const PizzaCard = ({ pizza, cartItems, addPizzaToCart, removeFromCart }) => {
   const [showCustomizePopup, setShowCustomizePopup] = useState(false);
   const symbol = "⭐️";
 
-  const starRating = (
+  const starRating = (  // For displaying stars corresponding to the rating
     <>
       {[...Array(Math.round(pizza.rating))].map((_, i) => (
         <span key={i}>{symbol}</span>
@@ -13,22 +13,23 @@ const PizzaCard = ({ pizza, cartItems, addPizzaToCart, removeFromCart }) => {
     </>
   );
 
-  const handleAdd = () => {
+  const handleAdd = () => {  // Adding more items to the cart if already added once, else opening pop-up for selecting size and toppings for the first time
     if(cartItems?.find(item => item.id === pizza.id)?.quantity >0) addPizzaToCart(pizza.id)
     else setShowCustomizePopup(true);
   };
 
-  const handleClose = () => {
+  const handleClose = () => {  // Handling close of the pop-up
     setShowCustomizePopup(false);
   };
 
-  const handleDecreaseQuantity = () => {
+  const handleDecreaseQuantity = () => { // Handling decreasing of the quantity if there is any in the cart already
     if(cartItems?.find(item => item.id === pizza.id)?.quantity >0) removeFromCart(pizza.id);
   };
 
   return (
     <div className="bg-white rounded-lg shadow-md p-4 m-2 flex flex-row justify-between">
       <div>
+        {/* Displaying Pizza details */}
         <h2 className="text-lg font-bold">{pizza.name}</h2>
         <p className="text-grey-600">{pizza.description}</p>
         <div className="flex justify-start space-x-6 items-center mt-4">
@@ -38,6 +39,7 @@ const PizzaCard = ({ pizza, cartItems, addPizzaToCart, removeFromCart }) => {
           </div>
           <div className="font-bold text-black">₹{pizza.price}</div>
         </div>
+        {/* Displaying selected size and toppings in cart */}
         <div className="flex flex-col pt-2">
           <div>
             <span className="font-medium">{pizza?.selectedSize} </span>
@@ -46,7 +48,6 @@ const PizzaCard = ({ pizza, cartItems, addPizzaToCart, removeFromCart }) => {
             {pizza?.selectedToppings?.map((topping) => (<span key={topping} className="font-medium"> {topping} </span>))}
           </div>
         </div>
-
       </div>
       <div className="flex flex-col justify-center items-center">
         <img
@@ -54,6 +55,7 @@ const PizzaCard = ({ pizza, cartItems, addPizzaToCart, removeFromCart }) => {
           alt={pizza.name}
           className="w-40 rounded-lg mb-4"
         />
+        {/* Buttons for adding and removing/decreasing quantity */}
         <div className="flex items-center">
           <button
             className="bg-red-400 text-white px-4 py-2 rounded-l-md cursor-pointer hover:bg-red-600 focus:outline-none"
@@ -84,6 +86,7 @@ const PizzaCard = ({ pizza, cartItems, addPizzaToCart, removeFromCart }) => {
           </button>
         </div>
       </div>
+      {/* Rendering Pop-up for pizza customization */}
       {showCustomizePopup && (
         <CustomizePopup pizza={pizza} addPizzaToCart={addPizzaToCart} onClose={handleClose} />
       )}

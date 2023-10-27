@@ -21,7 +21,6 @@ function App() {
       setCartItems((prevCart) => [...prevCart, { ...newPizza, quantity: 1 }]);  // If not available, add it to the cart
     }
   };
-  console.log("Cart Items:",cartItems);
   const removeFromCart = (id) => {  // Method for removing pizza from cart
     setCartItems((prevCart) => prevCart.map((item) => item.id === id ? { ...item, quantity: item.quantity - 1} : item));  // Decreasing it, if quantity more than 1
   }
