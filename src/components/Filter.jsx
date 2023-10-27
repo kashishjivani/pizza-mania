@@ -39,7 +39,7 @@ const Filter = ({ isVeg, toggleIsVeg, sortBy, toggleSort }) => {
         <div>
           <button
             onClick={handleToggle}
-            className="bg-white bg-indigo-300 hover:bg-indigo-400 rounded-md px-4 py-2"
+            className="bg-indigo-300 hover:bg-indigo-400 rounded-md px-4 py-2"
           >
             {isVeg ? "Non-Veg" : "Veg"}
           </button>
