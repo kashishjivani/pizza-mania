@@ -21,15 +21,18 @@ function App() {
       setCartItems((prevCart) => [...prevCart, { ...newPizza, quantity: 1 }]);  // If not available, add it to the cart
     }
   };
+  
   const removeFromCart = (id) => {  // Method for removing pizza from cart
-    setCartItems((prevCart) => prevCart.map((item) => item.id === id ? { ...item, quantity: item.quantity - 1} : item));  // Decreasing it, if quantity more than 1
+    setCartItems((prevCart) => {
+      const updatedCart = prevCart.map((item) => item.id === id ? { ...item, quantity: item.quantity > 0? item.quantity - 1: 0} : item); // Decreasing it, if quantity more than 1
+      return updatedCart.filter((item) => item.quantity > 0);  // Filtering if quantity is 0
+    })
   }
   
   return (
     <>
     {/* Using Router for routing to different pages */}
       <Router>
-        {/* Rendering Header at the top */}
         <Header />
         <Routes>
           {/* Route for displaying the Menu which has Pizzas listed */}
@@ -42,7 +45,6 @@ function App() {
           {/* Route for displaying Cart items which has Pizzas added to the cart */}
           <Route exact path="/cart" element={<Cart cartItems={cartItems} addPizzaToCart={addPizzaToCart} removeFromCart={removeFromCart} />} />
         </Routes>
-        {/* Rendering Footer at the end  */}
         <Footer />
       </Router>
     </>

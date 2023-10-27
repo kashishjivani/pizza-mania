@@ -7,7 +7,7 @@ const Cart = ({ cartItems, addPizzaToCart, removeFromCart }) => {
       {/* Rendering items in cart with selected size, toppings and quantity. Can also add and remove items from here. */}
       {cartItems.length > 0 ? (
         cartItems?.map((pizza) =>
-          pizza.quantity > 0 ? (
+          (
             <PizzaCard
               key={pizza.id}
               pizza={pizza}
@@ -15,13 +15,10 @@ const Cart = ({ cartItems, addPizzaToCart, removeFromCart }) => {
               addPizzaToCart={addPizzaToCart}
               removeFromCart={removeFromCart}
             />
-          ) : 
-          (
-            <></>
           )
         )
       ) : (
-        // When no item is selected initially
+        // When no item is selected
         <div className="font-bold h-96">Cart is Empty!</div>
       )}
     </div>
